@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from jobs.models import Application, Profile
@@ -15,6 +16,7 @@ def create_profile(request):
         role = request.POST['role']
         aboutme = request.POST['aboutme']
         cv = request.POST['cv']
+        linkedin = request.POST['linkedin']
         user = request.user
 
         profile = Profile.objects.create(
@@ -28,7 +30,8 @@ def create_profile(request):
             education=education,
             cv=cv,
             role=role,
-            aboutme = aboutme
+            aboutme = aboutme,
+            linkedin=linkedin
         )
         return redirect('/test/')
     else:
@@ -60,14 +63,18 @@ def create_profile(request):
 @login_required
 def candidate_details(request, id):
     # Retrieve the user's profile from the database
-    profile = get_object_or_404(Profile, id=id, user=request.user)
+    try:
+        
+      profile = get_object_or_404(Profile, id=id, user=request.user)
+      
+    except Http404:
+        # Handle the 404 error here (e.g., display a custom error message)
+        return render(request, 'error_404.html')
     
     # Render the profile detail template with the user's profile data
     return render(request, 'candidate-details.html', {'profile': profile})
 
 
-def success(request):
-  return render(request, 'success.html' )
 
 
 def dashbord(request):
@@ -83,4 +90,4 @@ def success(request):
 
 def test(request):
        
-  return render(request, 'testv.html')
+  return render(request, 'testc.html')

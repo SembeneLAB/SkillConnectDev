@@ -24,7 +24,7 @@
 .plan-icon-text .plan-icon i,
 .plan-icon-text:before,
 .n-activity .n-title {
-    color: #ffa700 !important;
+    color: #fd1616 !important;
 }
 
 
@@ -39,7 +39,7 @@
 .budget-area .opti-list li.active:after,
 .steps li.current:after,
 .steps li.checked:after {
-    background-color: #ffa700 !important;
+    background-color: #fd1616 !important;
 }
 
 
@@ -52,5 +52,5 @@
 .services-select-option li.active:after,
 .services-select-option li.active,
 .budget-area .opti-list li.active:after {
-    border-color: #ffa700 !important;
+    border-color: #fd1616 !important;
 }

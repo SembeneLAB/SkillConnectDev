@@ -16,7 +16,9 @@ class Profile(models.Model):
     job_type = models.CharField(max_length=100, null=True) #part time or full time
     years_of_experience = models.PositiveSmallIntegerField(null=True) #number of years of work experience
     education = models.CharField(max_length=255, default='') #user will choose among different different education
+    linkedin = models.URLField(max_length=200, blank=True, null=True)
     cv = models.FileField(upload_to='pdfs/', default='') #user will upload cv in pdf format
+    
 
 
 class Job(models.Model):
@@ -31,6 +33,7 @@ class Job(models.Model):
     language = models.CharField(max_length=255, default='')
     years_of_experience = models.PositiveSmallIntegerField(null=True)
     deadline = models.DateField(null=True)
+    company_name = models.CharField(max_length=100, default='')
     company = models.ForeignKey('Company', on_delete=models.CASCADE, null=True)
     
 class Application(models.Model):

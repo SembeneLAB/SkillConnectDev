@@ -1,0 +1,358 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Wizard V1</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/colors/switch.css' %}">
+	<!-- Color Alternatives -->
+	<link href="{% static 'assets/css/colors/color-2.css' %}" rel="alternate stylesheet" type="text/css" title="color-2">
+	<link href="{% static 'assets/css/colors/color-3.css' %}" rel="alternate stylesheet" type="text/css" title="color-3">
+	<link href="{% static 'assets/css/colors/color-4.css' %}" rel="alternate stylesheet" type="text/css" title="color-4">
+	<link href="{% static 'assets/css/colors/color-5.css' %}" rel="alternate stylesheet" type="text/css" title="color-5">
+</head>
+
+<body>
+
+	<!-- This code is use for color chooser, you can delete -->
+	<div id="switch-color" class="color-switcher">
+		<div class="open"><i class="fas fa-cog"></i></div>
+		<h4>COLOR OPTION</h4>
+		<ul>
+			<li><a class="color-2" onclick="setActiveStyleSheet('color-2'); return false;" href="#"><i class="fas fa-cog"></i></a> </li>
+			<li><a class="color-3" onclick="setActiveStyleSheet('color-3'); return false;" href="#"><i class="fas fa-cog"></i></a> </li>
+			<li><a class="color-4" onclick="setActiveStyleSheet('color-4'); return false;" href="#"><i class="fas fa-cog"></i></a> </li>
+			<li><a class="color-5" onclick="setActiveStyleSheet('color-5'); return false;" href="#"><i class="fas fa-cog"></i></a> </li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+
+	
+	<div class="wrapper">
+		<div class="steps-area steps-area-fixed">
+			<div class="image-holder">
+				<img src="{% static 'assets/img/side-img.jpg' %}" alt="">
+			</div>
+			<div class="steps clearfix">
+				<ul class="tablist multisteps-form__progress">
+					<li class="multisteps-form__progress-btn js-active current">
+						<span>1</span>
+					</li>
+					<li class="multisteps-form__progress-btn">
+						<span>2</span>
+					</li>
+					<li class="multisteps-form__progress-btn">
+						<span>3</span>
+					</li>
+					<li class="multisteps-form__progress-btn">
+						<span>4</span>
+					</li>
+					<li class="multisteps-form__progress-btn last">
+						<span>5</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<form class="multisteps-form__form" action="{% url 'profiles:create_profile' %}" id="wizard" method="POST">
+			<div class="form-area position-relative">
+
+        {% csrf_token %}
+				<!-- div 1 -->
+				<div class="multisteps-form__panel js-active" data-animation="slideHorz">
+					<div class="wizard-forms">
+						<div class="inner pb-100 clearfix">
+							<div class="form-content pera-content">
+								<div class="step-inner-content">
+									<span class="step-no">Step 1</span>
+									<h2>What kind of Job You need?</h2>
+									<div class="step-box">
+										<div class="row">
+											<div class="col-md-4">
+												<label class="step-box-content bg-white text-center relative-position active">
+													<span class="step-box-icon">
+														<img src="{% static 'assets/img/d1.png' %}" alt="">
+													</span>
+													<span class="step-box-text">
+														Full-Time
+													</span>
+													<span class="service-check-option">
+														<span><input type="radio" name="availability" value="Corporate Services" checked></span>
+													</span>
+												</label>
+											</div>
+											<div class="col-md-4">
+												<label class="step-box-content bg-white text-center relative-position">
+													<span class="step-box-icon">
+														<img src="{% static 'assets/img/d2.png' %}" alt="">
+													</span>
+													<span class="step-box-text">
+														Part-Time
+													</span>
+													<span class="service-check-option">
+														<span><input id="condition1" type="radio" name="availability" value="Freelancing Services"></span>
+													</span>
+												</label>
+											</div>
+											<div class="col-md-4">
+												<label class="step-box-content bg-white text-center relative-position">
+													<span class="step-box-icon">
+														<img src="{% static 'assets/img/d3.png' %}" alt="">
+													</span>
+													<span class="step-box-text">
+														Freelance
+													</span>
+													<span class="service-check-option">
+														<span><input type="radio" name="availability" value="Development Services"></span>
+													</span>
+												</label>
+											</div>
+										</div>
+
+										<!--<div class="row conditional" data-condition="#condition1 && service_name == 'Freelancing Services'">
+											<div class="col-md-12 form-inner-area">
+												<label for="field"><h3>Which Sector</h3></label>
+												<input type="text" name="field" class="form-control" minlength="2" placeholder="Write Here">
+											</div> -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.inner -->
+						<div class="actions">
+							<ul>
+								<li class="disable" aria-disabled="true"><span class="js-btn-next" title="NEXT">Backward <i class="fa fa-arrow-right"></i></span></li>
+								<li><span class="js-btn-next" title="NEXT">NEXT <i class="fa fa-arrow-right"></i></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- div 2 -->
+				<div class="multisteps-form__panel" data-animation="slideHorz">
+					<div class="wizard-forms">
+						<div class="inner pb-100 clearfix">
+							<div class="form-content pera-content">
+								<div class="step-inner-content">
+									<span class="step-no bottom-line">Step 2</span>
+									<div class="step-progress float-end">
+										<span>2 of 5 completed</span>
+										<div class="step-progress-bar">
+											<div class="progress">
+												<div class="progress-bar"></div>
+											</div>
+										</div>
+									</div>
+
+									<h2>Job Application Information</h2>
+								
+									
+									<div class="form-inner-area">
+										<input type="text" name="title" class="form-control" minlength="2" placeholder="title *" >
+                    <input type="text" name="location" class="form-control" minlength="2" placeholder="location *" >
+                    <input type="text" name="country" placeholder="Phone">
+										<textarea type="text" name="requirements" class="form-control" height="20px" placeholder="Requirements *" ></textarea>
+                    
+									</div>
+									
+									
+									
+								</div>
+							</div>
+						</div>
+						<!-- /.inner -->
+						<div class="actions">
+							<ul>
+								<li><span class="js-btn-prev" title="BACK"><i class="fa fa-arrow-left"></i> BACK </span></li>
+								<li><span class="js-btn-next" title="NEXT">NEXT <i class="fa fa-arrow-right"></i></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- div 3 -->
+				<div class="multisteps-form__panel" data-animation="slideHorz">
+					<div class="wizard-forms">
+						<div class="inner pb-100 clearfix">
+							<div class="form-content pera-content">
+								<div class="step-inner-content">
+									<span class="step-no bottom-line">Step 3</span>
+									<div class="step-progress float-end">
+										<span>3 of 5 completed</span>
+										<div class="step-progress-bar">
+											<div class="progress">
+												<div class="progress-bar" style="width:40%"></div>
+											</div>
+										</div>
+									</div>
+									<h2>Which role do you need ?</h2>
+									
+									<div class="services-select-option">
+										<ul>
+											<li class="bg-white active"><label>Web Design <input type="radio" id="condition2" name="role" value="Web Design" checked></label></li>
+											<li class="bg-white"><label>Web Development <input type="radio" name="role" value="Web Development"></label></li>
+											<li class="bg-white"><label>Graphics Design <input type="radio" name="role" value="Graphics Design"></label></li>
+											<li class="bg-white"><label>SEO <input type="radio" name="role" value="SEO"></label></li>
+                      <li class="bg-white"><label>Data Scientist <input type="radio" name="role" value="Data Scientist"></label></li>
+                      <li class="bg-white"><label>Mobile Engineer <input type="radio" name="role" value="Mobile Engineer"></label></li>
+
+										</ul>
+									</div>
+
+                  <h2>Language ?</h2>
+
+                  <div class="services-select-option">
+										<ul>
+											<li class="bg-white active"><label>English <input type="radio" id="condition2" name="role" value="Web Design" checked></label></li>
+											<li class="bg-white"><label>French <input type="radio" name="role" value="Web Development"></label></li>
+											<li class="bg-white"><label> German <input type="radio" name="role" value="Graphics Design"></label></li>
+											<li class="bg-white"><label>Arabic <input type="radio" name="role" value="SEO"></label></li>
+                      <li class="bg-white"><label>Wolof <input type="radio" name="role" value="Data Scientist"></label></li>
+
+										</ul>
+									</div>
+								
+								
+									
+								</div>
+							</div>
+						</div>
+						<!-- ./inner -->
+						<div class="actions">
+							<ul>
+								<li><span class="js-btn-prev" title="BACK"><i class="fa fa-arrow-left"></i> BACK </span></li>
+								<li><span class="js-btn-next" title="NEXT">NEXT <i class="fa fa-arrow-right"></i></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- div 4 -->
+				<div class="multisteps-form__panel" data-animation="slideHorz">
+					<div class="wizard-forms">
+						<div class="inner pb-100 clearfix">
+							<div class="form-content pera-content">
+								<div class="step-inner-content">
+									<span class="step-no bottom-line">Step 4</span>
+									<div class="step-progress float-end">
+										<span>4 of 5 completed</span>
+										<div class="step-progress-bar">
+											<div class="progress">
+												<div class="progress-bar" style="width:70%"></div>
+											</div>
+										</div>
+									</div>
+									<h2>Job & Requirements</h2>
+									
+									<div class="step-content-area">
+										<div class="budget-area">
+											<p><i class="fas fa-dollar-sign"></i> Salary </p>
+											<input type="number" name="salary" id="salary"  class="form-control" placeholder="Salary *">
+										</div>
+										<div class="budget-area">
+											<p><i class="fas fa-comments"></i>Years of experience min</p>
+											<input type="number" name="skills"  class="form-control" placeholder="Years of experience *"></textarea>
+										</div>
+
+                    <div class="budget-area">
+											<p><i class="fas fa-comments"></i>Dealine</p>
+											<input type="date" name="deadline"  class="form-control" placeholder="Deadline *"></textarea>
+										</div>
+
+                    <div class="budget-area">
+											<p><i class="fas fa-comments"></i>Dealine</p>
+
+											<select id="company" name="company" class="form-control">
+                      {% for company in companies %}
+                      <option value="{{ company.name }}">
+                        {{company.name}}
+                      </option>
+                      <!--{% endfor %} -->
+                      </select>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.inner -->
+						<div class="actions">
+							<ul>
+								<li><span class="js-btn-prev" title="BACK"><i class="fa fa-arrow-left"></i> BACK </span></li>
+								<li><span class="js-btn-next" title="NEXT">NEXT <i class="fa fa-arrow-right"></i></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- div 5 -->
+				<div class="multisteps-form__panel" data-animation="slideHorz">
+					<div class="wizard-forms">
+						<div class="inner pb-100 clearfix">
+							<div class="form-content pera-content">
+								<div class="step-inner-content">
+									<span class="step-no bottom-line">Step 5</span>
+									<div class="step-progress float-end">
+										<span>5 of 5 completed</span>
+										<div class="step-progress-bar">
+											<div class="progress">
+												<div class="progress-bar" style="width:100%"></div>
+											</div>
+										</div>
+									</div>
+									<h2>Complete Final Step</h2>
+								
+										<div class="comment-box">
+											<textarea name="aboutme" class="form-control" height="30px" placeholder="Bio"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.inner -->
+						<div class="actions">
+							<ul>
+								<li><span class="js-btn-prev" title="BACK"><i class="fa fa-arrow-left"></i> BACK </span></li>
+								<li><button type="submit" title="NEXT">SUBMIT <i class="fa fa-arrow-right"></i></button></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/js/conditionize.flexible.jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/main.js' %}"></script>
+	<script src="{% static 'assets/js/switch.js' %}"></script>
+	<script>
+		$("#files").change(function() {
+			filename = this.files[0].name
+			// console.log(filename);
+		});
+
+		function UploadFile() {
+			var reader = new FileReader();
+			var file = document.getElementById('attach').files[0];
+			reader.onload = function() {
+				document.getElementById('fileContent').value = reader.result;
+				document.getElementById('filename').value = file.name;
+				document.getElementById('wizard').submit();
+			}
+			reader.readAsDataURL(file);
+		}
+
+		$(document).ready(function() {
+			$('.conditional').conditionize();
+		});
+	</script>
+</body>
+
+</html>

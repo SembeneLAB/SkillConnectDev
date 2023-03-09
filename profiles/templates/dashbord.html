@@ -1,3 +1,5 @@
+
+{% load static %}
 <!doctype html>
 <html lang="en" dir="ltr">
 
@@ -13,19 +15,19 @@
         content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
 
     <!-- TITLE -->
-    <title>Sash – Bootstrap 5 Admin & Dashboard Template </title>
+    <title>SkillConnect </title>
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- STYLE CSS -->
-     <link href="../assets/css/style.css" rel="stylesheet">
+     <link href="{% static 'css_dash/style.css' %}" rel="stylesheet">
 
     <!--- FONT-ICONS CSS -->
-    <link href="../assets/css/icons.css" rel="stylesheet">
+    <link href="{% static 'css_dash/icons.css' %}" rel="stylesheet">
 
     <!-- INTERNAL Switcher css -->
     <link href="../assets/switcher/css/switcher.css" rel="stylesheet">
@@ -43,12 +45,13 @@
                 <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
                 <div class="app-sidebar">
                     <div class="side-header">
+                       
                         <a class="header-brand1" href="{% url 'home:index' %}">
-                            <img src="../assets/images/brand/logo-white.png" class="header-brand-img desktop-logo" alt="logo">
-                            <img src="../assets/images/brand/icon-white.png" class="header-brand-img toggle-logo"
+                            <img src="{% static 'css_dash/logo.png' %}" class="header-brand-img desktop-logo" alt="logo">
+                            <img src="{% static 'css_dash/logo.png' %}"  class="header-brand-img toggle-logo"
                                 alt="logo">
-                            <img src="../assets/images/brand/icon-dark.png" class="header-brand-img light-logo" alt="logo">
-                            <img src="../assets/images/brand/logo-dark.png" class="header-brand-img light-logo1"
+                            <img src="{% static 'css_dash/logo.png' %}"  class="header-brand-img light-logo" alt="logo">
+                            <img src="{% static 'css_dash/logo.png' %}"  class="header-brand-img light-logo1"
                                 alt="logo">
                         </a>
                         <!-- LOGO -->
@@ -63,7 +66,7 @@
                                 <h3>Main</h3>
                             </li>
                             <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="index.html"><i
+                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="{% url 'home:index' %}"><i
                                         class="side-menu__icon fe fe-home"></i><span
                                         class="side-menu__label">Dashboard</span></a>
                             </li>
@@ -107,7 +110,7 @@
                             <div class="col-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title mb-0">{{jobs.company.name}}</h3>
+                                        <h3 class="card-title mb-0">{{jobs.job.company_name}}</h3>
                                     </div>
                                     <div class="card-body pt-4">
                                         <div class="grid-margin">
@@ -148,6 +151,8 @@
                                                                                 <th
                                                                                     class="bg-transparent border-bottom-0">
                                                                                     Profile</th>
+                                                                                <th class="bg-transparent border-bottom-0"
+                                                                                    style="width: 5%;">Linkedin</th>
 
                                                         
                                                                                 <th class="bg-transparent border-bottom-0"
@@ -195,19 +200,25 @@
                                                                                 <td>
                                                                                     <div class="mt-sm-1 d-block">
                                                                                         <span
-                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3"><a href="{% url 'profile:candidate_details' id=job.applicant.id %}"></a></span>
+                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3"><a href="{% url 'profiles:candidate_details' id=jobs.applicant.id %}">View</a></span>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="mt-sm-1 d-block">
+                                                                                        <span
+                                                                                            class="badge bg-success-transparent rounded-pill text-success p-2 px-3"><a href="{{jobs.applicant.linkedin}}">View</a></span>
                                                                                     </div>
                                                                                 </td>
                                                                                 <td>
                                                                                     <div class="g-2">
                                                                                         <a class="btn text-primary btn-sm"
                                                                                             data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Edit"><span
-                                                                                                class="fe fe-edit fs-14"></span></a>
+                                                                                            data-bs-original-title="Edit" href="mailto:{{ jobs.applicant.user.email }}"><span
+                                                                                                >message</span></a>
                                                                                         <a class="btn text-danger btn-sm"
                                                                                             data-bs-toggle="tooltip"
                                                                                             data-bs-original-title="Delete"><span
-                                                                                                class="fe fe-trash-2 fs-14"></span></a>
+                                                                                                ></span></a>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
@@ -230,6 +241,7 @@
                             </div>
                         </div>
                         <!-- ROW-4 END -->
+                        {% endfor %}
                     </div>
                     <!-- CONTAINER END -->
                 </div>

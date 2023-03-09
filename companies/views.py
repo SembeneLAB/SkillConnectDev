@@ -11,11 +11,13 @@ def create_job(request):
         salary = request.POST.get('salary')
         language = request.POST.get('language')
         role= request.POST.get('role')
-        type= request.POST.get('type')
+        job= request.POST.get('job')
         deadline= request.POST.get('deadline')
         availability= request.POST.get('availability')
         years_of_experience = request.POST.get('years_of_experience')
         company_id = request.POST.get('company_id')
+        company_name = request.POST.get('company_name')
+
         
         job = Job.objects.create(
             title=title,
@@ -26,13 +28,14 @@ def create_job(request):
             language=language,
             years_of_experience=years_of_experience,
             role=role,
-            type=type,
+            job=job,
             deadline=deadline,
             company_id=company_id,
-            Job_type=availability
+            Job_type=availability,
+            company_name=company_name,
         )
         
-        return redirect('success.html')
+        return redirect('/create_job/success')
     
     return render(request, '/hire/')
 

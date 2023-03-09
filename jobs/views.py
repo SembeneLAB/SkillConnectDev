@@ -1,4 +1,5 @@
 from cProfile import Profile
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 
@@ -6,8 +7,15 @@ from jobs.models import Application, Company, Job, Profile
 
 # Create your views here.
 def job_details(request, id):
-    job = get_object_or_404(Job, id=id)
-    return render(request, 'job-details.html', {'job': job})
+  
+  try:
+       job = get_object_or_404(Job, id=id)
+  except Http404:
+        # Handle the 404 error here (e.g., display a custom error message)
+        return render(request, 'error_404.html')
+      
+      
+  return render(request, 'job-details.html', {'job': job})
 
 
 def job_list(request):
