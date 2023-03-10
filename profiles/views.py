@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
-from jobs.models import Application, Profile
+from jobs.models import Application, Job, Profile
 
 @login_required
 def create_profile(request):
@@ -77,8 +77,13 @@ def candidate_details(request, id):
 
 
 
-def dashbord(request):
-  job = Application.objects.all()
+def dashbord(request, company_name, title):
+ # job = Application.objects.all()
+  #context = {
+       # 'job' : job}
+  
+  job = Application.objects.filter(job__company_name=company_name, job__title=title)
+  
   context = {
         'job' : job}
   
@@ -91,3 +96,12 @@ def success(request):
 def test(request):
        
   return render(request, 'testc.html')
+
+
+def dashbord_view(request):
+    jobs = Job.objects.all()
+    context = {
+        'jobs': jobs,
+    }
+    return render(request, 'home_dashbord.html', context)
+  

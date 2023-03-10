@@ -74,7 +74,20 @@
                             <li class="sub-category">
                                 <h3>Pre-build Pages</h3>
                             </li>
-                            
+
+                             <li class="sub-category">
+                                <h3>Companies</h3>
+                            </li>
+
+
+                            {% for job in jobs %}
+                            <li class="sub-category" >
+                                
+                            <h3><a href="{% url 'profiles:dashbord' company_name=job.company_name title=job.title  %}">{{ job.company_name }}</a></h3>
+                                    
+                            </li>
+
+                            {% endfor %}
                         </ul>
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
                                 width="24" height="24" viewBox="0 0 24 24">
@@ -99,18 +112,22 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
+
+                                   
+                                    
+
                                 </ol>
                             </div>
                         </div>
                         <!-- PAGE-HEADER END -->
 
-                    {% for jobs in job %}
+                    
                         <!-- ROW-4 -->
                         <div class="row">
                             <div class="col-12 col-sm-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title mb-0">{{jobs.job.company_name}}</h3>
+                                        <!--<h3 class="card-title mb-0">{{jobs.job.company_name}}</h3>-->
                                     </div>
                                     <div class="card-body pt-4">
                                         <div class="grid-margin">
@@ -160,7 +177,12 @@
                                                                             </tr>
                                                                         </thead>
 
+                                                                        
+                                                                        
+
                                                                         <tbody>
+                                                                            {% for jobs in job %}
+                                                                            
                                                                             <tr class="border-bottom">
                                                                                 <td class="text-center">
                                                                                     <div class="mt-0 mt-sm-2 d-block">
@@ -222,10 +244,12 @@
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
+                                                                            {% endfor %}
 
 
-                                                             
+                                                                        
                                                                         </tbody>
+                                                                        
                                                                     </table>
                                                                 </div>
                                                             </div>
@@ -241,7 +265,7 @@
                             </div>
                         </div>
                         <!-- ROW-4 END -->
-                        {% endfor %}
+                        
                     </div>
                     <!-- CONTAINER END -->
                 </div>

@@ -10,7 +10,8 @@ urlpatterns = [
   path('candidate_details/<int:id>/', views.candidate_details, name='candidate_details'),
   path('create_profile/', views.create_profile, name='create_profile'),
   path('success/', views.success, name='success'),
-  path('dashbord/', views.dashbord, name='dashbord'),
+  path('dashbord/', views.dashbord_view, name='dashbord_view'),
+  path('dashbord/<str:company_name>/<str:title>/', views.dashbord, name='dashbord'),
   path('dashbord/None', views.dashbord, name='dashbord'),
   path('test/', views.test, name='test'),
 ]
